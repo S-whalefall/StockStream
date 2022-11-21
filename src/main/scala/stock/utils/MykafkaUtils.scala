@@ -9,7 +9,6 @@ import org.apache.kafka.common.serialization.StringSerializer
 import java.util.Properties
 
 
-
 /*
 * kafka工具类
 * */
@@ -38,9 +37,8 @@ object MykafkaUtils {
   }
 
 
-  // 获取kafkaSource topic groupId   (Flink 读取这个topic)
-  def getKafkaSource(topic: String,groupId:String): Unit ={ //这里是作为消费者组，去拿取kafka中的数据
-
+  // 获取kafkaSource topic groupId   (Flink 读取这个topic)      : Unit把这个方法的返回类型删掉，addsource需要FlinkKafkaConsumer类型的数据，不是unit，会报错
+  def getKafkaSource(topic: String,groupId:String) ={ //这里是作为消费者组，去拿取kafka中的数据
     val props = new Properties()
     props.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,brokerList)
     props.setProperty(ConsumerConfig.GROUP_ID_CONFIG,groupId)
@@ -48,8 +46,8 @@ object MykafkaUtils {
   }
 
   // 获取kafkaSink topic   (Flink 写入这个topic)
-  def getkafkaSink(topic:String): Unit ={
-    new FlinkKafkaProducer[String](brokerList,topic,new SimpleStringSchema())
+  def getkafkaSink(topic:String) ={
+    new FlinkKafkaProducer[String](brokerList, topic, new SimpleStringSchema())
   }
 
 

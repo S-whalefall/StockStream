@@ -20,7 +20,7 @@ public class StockData2Ods {
         LOGGER.info(GetStockData.getStockHistoryK());
 
         //日志写入kafka
-        MykafkaUtils.writeData2Kafka(topics,GetStockData.getStockHistoryK().trim());
+        MykafkaUtils.writeData2Kafka(topics,GetStockData.getStockTimeLine().trim());
 
         MykafkaUtils.writeData2Kafka(topics,GetStockData.getStock50().trim());
 
