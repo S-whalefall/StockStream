@@ -6,6 +6,7 @@ import stock.bean.StockHistoryK
 
 class StockHistoryKFilterFunction extends RichFilterFunction[StockHistoryK]{
 
+  //这个获取上下文，是要获取之前的时间状态的参数
   lazy val tsState = getRuntimeContext.getState(new ValueStateDescriptor[String]("tsState",classOf[String],""))
 
   override def filter(value :StockHistoryK): Boolean = {

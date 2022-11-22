@@ -45,6 +45,12 @@ object StockOds2Dwd {
       }
     })
 
+
+    /*
+    * FlatMapFunction[String,Stock50]，flatmap继承这个方法，包括泛型里面是输入和输出
+    *
+    * RichFilterFunction[StockHistoryK]  继承RichFilterFunction方法，【】里是输入的数据类型
+    * */
     processStream.flatMap(new Stock50flatMapFunction)
       .keyBy(_.dealType)
       .filter(new Stock50FilterFunction)
